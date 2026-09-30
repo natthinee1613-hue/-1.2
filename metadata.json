@@ -1,0 +1,6 @@
+{
+  "name": "ทำเนียบข้าราชการตำรวจ สำนักงานกำลังพล (สกพ.)",
+  "description": "ระบบทำเนียบข้าราชการตำรวจ สกพ. บริหารจัดการข้อมูลกำลังพล แบ่งหัวข้อแยกย่อยตามกองและฝ่าย ค้นหา แก้ไข ลบ เพิ่ม ดาวน์โหลด Excel/PDF และอัปโหลดข้อมูล",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
