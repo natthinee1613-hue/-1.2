@@ -11,8 +11,6 @@ import {
   resetOfficersToDefault 
 } from './utils/storage';
 import { Header } from './components/Header';
-import { StatsOverview } from './components/StatsOverview';
-import { SubdivisionNav } from './components/SubdivisionNav';
 import { OrgChart } from './components/OrgChart';
 import { FilterBar } from './components/FilterBar';
 import { OfficerTable } from './components/OfficerTable';
@@ -23,7 +21,7 @@ import { DeleteConfirmModal } from './components/DeleteConfirmModal';
 import { UploadModal } from './components/UploadModal';
 import { DownloadModal } from './components/DownloadModal';
 import { PrintView } from './components/PrintView';
-import { CheckCircle2, AlertCircle, GitBranch, Layers } from 'lucide-react';
+import { CheckCircle2, AlertCircle } from 'lucide-react';
 
 export default function App() {
   // Main Data State
@@ -44,7 +42,6 @@ export default function App() {
 
   // UI State
   const [viewMode, setViewMode] = useState<'table' | 'grid'>('table');
-  const [structureMode, setStructureMode] = useState<'chart' | 'cascade'>('chart');
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [toastMessage, setToastMessage] = useState<{ text: string; type: 'success' | 'info' | 'error' } | null>(null);
 
@@ -279,72 +276,18 @@ export default function App() {
       {/* Main Content Area */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
         
-        {/* Structure View Switcher (แผนภูมิโครงสร้าง vs ตัวเลือกด่วน) */}
-        <div className="flex items-center justify-between mb-3 px-1">
-          <div className="flex items-center space-x-2">
-            <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
-              รูปแบบโครงสร้างหน่วยงาน:
-            </span>
-          </div>
-
-          <div className="flex items-center bg-slate-200/80 p-1 rounded-2xl border border-slate-300/80">
-            <button
-              onClick={() => setStructureMode('chart')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                structureMode === 'chart'
-                  ? 'bg-slate-900 text-amber-400 shadow-sm'
-                  : 'text-slate-700 hover:text-slate-900'
-              }`}
-            >
-              <GitBranch className="w-3.5 h-3.5 text-amber-400" />
-              <span>แผนภูมิโครงสร้างองค์กร (Org Chart)</span>
-            </button>
-            <button
-              onClick={() => setStructureMode('cascade')}
-              className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                structureMode === 'cascade'
-                  ? 'bg-slate-900 text-amber-400 shadow-sm'
-                  : 'text-slate-700 hover:text-slate-900'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5 text-amber-400" />
-              <span>เลือกสังกัด บช. ➔ บก. ➔ กก.</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Structure Component Rendering */}
-        {structureMode === 'chart' ? (
-          <OrgChart
-            officers={officers}
-            filteredCount={filteredOfficers.length}
-            selectedBch={filters.selectedBch}
-            selectedBg={filters.selectedBg}
-            selectedKk={filters.selectedKk}
-            onSelectBch={(bch) => setFilters(prev => ({ ...prev, selectedBch: bch, selectedBg: 'ALL', selectedKk: 'ALL' }))}
-            onSelectBg={(bg) => setFilters(prev => ({ ...prev, selectedBg: bg, selectedKk: 'ALL' }))}
-            onSelectKk={(kk) => setFilters(prev => ({ ...prev, selectedKk: kk }))}
-            onResetStructure={() => setFilters(prev => ({ ...prev, selectedBch: 'ALL', selectedBg: 'ALL', selectedKk: 'ALL' }))}
-          />
-        ) : (
-          <div className="space-y-4 mb-6">
-            <SubdivisionNav
-              officers={officers}
-              selectedBch={filters.selectedBch}
-              selectedBg={filters.selectedBg}
-              selectedKk={filters.selectedKk}
-              onSelectBch={(bch) => setFilters(prev => ({ ...prev, selectedBch: bch, selectedBg: 'ALL', selectedKk: 'ALL' }))}
-              onSelectBg={(bg) => setFilters(prev => ({ ...prev, selectedBg: bg, selectedKk: 'ALL' }))}
-              onSelectKk={(kk) => setFilters(prev => ({ ...prev, selectedKk: kk }))}
-              onResetStructure={() => setFilters(prev => ({ ...prev, selectedBch: 'ALL', selectedBg: 'ALL', selectedKk: 'ALL' }))}
-            />
-            {/* Compact Stats in Cascade Mode */}
-            <StatsOverview
-              officers={officers}
-              filteredCount={filteredOfficers.length}
-            />
-          </div>
-        )}
+        {/* Organization Structure Chart */}
+        <OrgChart
+          officers={officers}
+          filteredCount={filteredOfficers.length}
+          selectedBch={filters.selectedBch}
+          selectedBg={filters.selectedBg}
+          selectedKk={filters.selectedKk}
+          onSelectBch={(bch) => setFilters(prev => ({ ...prev, selectedBch: bch, selectedBg: 'ALL', selectedKk: 'ALL' }))}
+          onSelectBg={(bg) => setFilters(prev => ({ ...prev, selectedBg: bg, selectedKk: 'ALL' }))}
+          onSelectKk={(kk) => setFilters(prev => ({ ...prev, selectedKk: kk }))}
+          onResetStructure={() => setFilters(prev => ({ ...prev, selectedBch: 'ALL', selectedBg: 'ALL', selectedKk: 'ALL' }))}
+        />
 
         {/* Filter and Search Bar */}
         <FilterBar

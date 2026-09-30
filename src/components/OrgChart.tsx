@@ -480,14 +480,11 @@ export const OrgChart: React.FC<OrgChartProps> = ({
                 : `${themeConfig.masterBg} text-white ${themeConfig.masterBorder}`
             }`}
           >
-            {/* Level Badge & Header Strip */}
+            {/* Header Strip */}
             <div className="flex items-center justify-between gap-2 mb-3">
               <div className="flex items-center space-x-2">
-                <span className={`px-3 py-0.5 rounded-full text-[10px] sm:text-xs font-black uppercase tracking-wider ${themeConfig.badgeBg} shadow-xs`}>
-                  ระดับ 1 • กองบัญชาการสูงสุด (บช.)
-                </span>
-                <span className="text-[11px] text-amber-300/90 font-bold uppercase tracking-widest hidden sm:inline">
-                  ROYAL THAI POLICE
+                <span className="text-[11px] text-amber-300/90 font-bold uppercase tracking-widest">
+                  ROYAL THAI POLICE • สำนักงานตำรวจแห่งชาติ
                 </span>
               </div>
             </div>
@@ -507,7 +504,7 @@ export const OrgChart: React.FC<OrgChartProps> = ({
                     <h3 className={`font-black tracking-tight font-['Prompt'] ${themeConfig.accentGold} ${
                       isChartCoverEnlarged ? 'text-xl sm:text-2xl lg:text-3xl' : 'text-base sm:text-lg'
                     }`}>
-                      สำนักงานกำลังพล (บช. สกพ.)
+                      สำนักงานกำลังพล (สกพ.)
                     </h3>
                   </div>
 
