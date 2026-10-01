@@ -105,6 +105,23 @@ export const OfficerTable: React.FC<OfficerTableProps> = ({
   return (
     <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden flex flex-col">
       
+      {/* Table Status & Publication Bar */}
+      <div className="bg-slate-50 border-b border-slate-200/90 px-4 py-2.5 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
+        <div className="flex items-center gap-2">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="font-bold text-slate-800">ตารางทำเนียบข้าราชการตำรวจ สำนักงานกำลังพล (สกพ.)</span>
+          <span className="text-slate-400">•</span>
+          <span className="text-slate-600">แสดงผล {sortedOfficers.length.toLocaleString()} อัตรา</span>
+        </div>
+        <div className="flex items-center gap-2 text-[11px]">
+          <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold border border-emerald-200">
+            สถานะ: เผยแพร่อัปเดตเป็นปัจจุบัน
+          </span>
+          <span className="text-slate-400 hidden sm:inline">•</span>
+          <span className="text-slate-500 hidden sm:inline">คลิกหัวตารางเพื่อเรียงลำดับ</span>
+        </div>
+      </div>
+
       {/* Top Bulk Action Bar */}
       {selectedIds.length > 0 && (
         <div className="bg-amber-500/10 border-b border-amber-500/20 px-4 py-2.5 flex items-center justify-between text-xs">

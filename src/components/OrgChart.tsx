@@ -487,6 +487,10 @@ export const OrgChart: React.FC<OrgChartProps> = ({
                   ROYAL THAI POLICE • สำนักงานตำรวจแห่งชาติ
                 </span>
               </div>
+              <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-bold">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span>ข้อมูลเผยแพร่เป็นปัจจุบัน พ.ศ. ๒๕๖๙</span>
+              </div>
             </div>
 
             {/* Main Content inside Top Node */}
